@@ -38,3 +38,25 @@ Feature: Verify end-to-end message delivery pipeline
   Scenario: Sent message is successfully saved as the latest record
     When I send a message "Testing latest record!" to the queue
     Then the latest record in the database should have text "Testing latest record!"
+
+The background test engine scans the real-time database entries, uses Java Streams to locate the maximum record ID, and validates the content of the latest transaction safely without wiping out historical records.
+
+💻 Prerequisites
+Before running the project locally, ensure you have:
+
+Java 21 JDK installed
+
+Docker & Docker Compose installed (to host ActiveMQ and PostgreSQL instances)
+
+🚀 How to Run Locally
+1. Spin up the Infrastructure
+Start the ActiveMQ broker and PostgreSQL database containers using Docker Compose:
+
+Bash
+docker-compose up -d
+2. Run Integration Tests
+To build the application and execute the Cucumber test suite under the correct Java environment, run the following command in your terminal:
+
+Bash
+JAVA_HOME=$(/usr/libexec/java_home -v 21) ./gradlew clean test
+Once execution completes successfully, Gradle will generate detailed test logs, and you will see the green BUILD SUCCESSFUL status in your terminal.
