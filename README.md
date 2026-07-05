@@ -27,6 +27,30 @@ This repository demonstrates a classic architectural pattern for distributed sys
 
 ---
 
+💻 **Prerequisites**
+
+Before running the project locally, ensure you have:
+
+* Java 21 JDK installed
+
+* Docker & Docker Compose installed (to host ActiveMQ and PostgreSQL instances)
+
+🚀 **How to Run Locally**
+
+1. Spin up the Infrastructure
+Start the ActiveMQ broker and PostgreSQL database containers using Docker Compose:
+
+Bash
+```docker-compose up -d```
+
+2. Run Integration Tests
+To build the application and execute the Cucumber test suite under the correct Java environment, run the following command in your terminal:
+
+Bash
+```JAVA_HOME=$(/usr/libexec/java_home -v 21) ./gradlew clean test```
+
+Once execution completes successfully, Gradle will generate detailed test logs, and you will see the green BUILD SUCCESSFUL status in your terminal.
+
 ## 📋 BDD Test Scenario
 
 The E2E tests are written in human-readable Gherkin syntax (located in `src/test/resources/features/pipeline.feature`):
@@ -40,23 +64,3 @@ Feature: Verify end-to-end message delivery pipeline
     Then the latest record in the database should have text "Testing latest record!"
 
 The background test engine scans the real-time database entries, uses Java Streams to locate the maximum record ID, and validates the content of the latest transaction safely without wiping out historical records.
-
-💻 Prerequisites
-Before running the project locally, ensure you have:
-
-Java 21 JDK installed
-
-Docker & Docker Compose installed (to host ActiveMQ and PostgreSQL instances)
-
-🚀 How to Run Locally
-1. Spin up the Infrastructure
-Start the ActiveMQ broker and PostgreSQL database containers using Docker Compose:
-
-Bash
-docker-compose up -d
-2. Run Integration Tests
-To build the application and execute the Cucumber test suite under the correct Java environment, run the following command in your terminal:
-
-Bash
-JAVA_HOME=$(/usr/libexec/java_home -v 21) ./gradlew clean test
-Once execution completes successfully, Gradle will generate detailed test logs, and you will see the green BUILD SUCCESSFUL status in your terminal.
