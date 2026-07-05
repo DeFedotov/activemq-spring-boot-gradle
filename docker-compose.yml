@@ -1,0 +1,29 @@
+services:
+  # 1. Брокер сообщений ActiveMQ
+  activemq:
+    image: symptoma/activemq:latest
+    container_name: local-activemq
+    ports:
+      - "8161:8161"   # Веб-админка брокера
+      - "61616:61616" # Порт для отправки сообщений
+    restart: always
+
+  # 2. База данных PostgreSQL
+  postgres:
+    image: postgres:latest
+    container_name: local-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: my_secure_password
+      POSTGRES_DB: my_database
+    ports:
+      - "5432:5432"   # Стандартный порт базы данных
+    restart: always
+
+  # 3. Веб-интерфейс Adminer для просмотра базы
+  adminer:
+    image: adminer:latest
+    container_name: local-adminer
+    ports:
+      - "8080:8080"   # Веб-админка базы данных
+    restart: always

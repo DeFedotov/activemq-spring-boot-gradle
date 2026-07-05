@@ -1,0 +1,25 @@
+# Gradle logs and caches
+.gradle/
+build/
+
+# IntelliJ IDEA workspace
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Test reports and cucumber outputs if any generated locally
+target/
