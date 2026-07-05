@@ -15,25 +15,20 @@ repositories {
 }
 
 dependencies {
-    // Включаем родное управление зависимостями Gradle для Spring Boot
     implementation platform('org.springframework.boot:spring-boot-dependencies:3.2.5')
 
-    // Для стартеров Spring версии больше писать не нужно — платформа выставит их сама
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework:spring-jms'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    // Сторонние библиотеки (оставляем версии как есть)
     implementation 'org.apache.activemq:activemq-client:6.1.2'
     implementation 'org.postgresql:postgresql:42.7.3'
 
-    // Библиотеки для Cucumber
     testImplementation 'io.cucumber:cucumber-java:7.18.0'
     testImplementation 'io.cucumber:cucumber-spring:7.18.0'
     testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.18.0'
     testImplementation 'org.junit.platform:junit-platform-suite:1.10.2'
 
-    // Тестовый стартер Spring Boot — теперь он железно подтянет @SpringBootTest
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
